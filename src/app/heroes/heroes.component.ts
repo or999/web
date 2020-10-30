@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../hero.service';
 import { Hero } from '../hero';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -10,7 +11,7 @@ import { Hero } from '../hero';
 export class HeroesComponent implements OnInit {
   selectHero: Hero;
   heroes: Hero[];
-  constructor( private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private messageService: MessageService) { }
   ngOnInit(): void {
     // 生命周期钩子，组件创建完后调用，放初始化逻辑
     this.getHeroes();
@@ -20,8 +21,11 @@ export class HeroesComponent implements OnInit {
   }
   onSelect(hero: Hero): void {
     this.selectHero = hero;
+    this.messageService.addMessage(`you are selected id ${hero.id}
+    name ${hero.name} hero`);
+
   }
-  getHeroes(): void{
+  getHeroes(): void {
     // this.heroes = this.heroService.getHeroes();
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
