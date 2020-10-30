@@ -1,2 +1,7 @@
-<p>{{ hero.name | titlecase }}</p>
-<input type="text" [(value)]="hero.name" (input)="change()">
+<ul>
+<li *ngFor="let hero of herors; let i=index" (click)="onSelect(hero)" [class.selected]="hero===selectHero">
+<h1>{{ hero.name | titlecase }}</h1>
+<input type="text" [(ngModel)]="hero.name" (input)="change()">
+</li>
+</ul>
+<app-hero-detail [selectHero]="selectHero"></app-hero-detail>
