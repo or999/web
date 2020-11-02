@@ -1,7 +1,11 @@
 <ul>
-<li *ngFor="let hero of heroes; let i=index" (click)="onSelect(hero)" [class.selected]="hero===selectHero">
-<h1>{{ hero.name | titlecase }}</h1>
-<input type="text" [(ngModel)]="hero.name" (input)="change()">
+<li *ngFor="let hero of heroes; let i=index" (click)="onSelect(hero)" [class.selected]="hero.id===selectId">
+<h1 >{{ hero.name | titlecase }}</h1>
+<a [routerLink]="['/detail',hero.id]" routerLinkActive="active">link1 </a>
+<a routerLink="/detail/{{hero.id}}">link2</a>
+<!-- 路由跳转的两种方式 routerLinkActive:活动路由对活动中的路由使用特别的样式-->
 </li>
 </ul>
-<app-hero-detail [selectHero]="selectHero"></app-hero-detail>
+<app-message></app-message>
+
+ <app-hero-detail [selectHero]="selectHero"></app-hero-detail>

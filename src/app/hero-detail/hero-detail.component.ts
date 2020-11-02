@@ -8,8 +8,14 @@ import { Hero } from '../hero';
 })
 export class HeroDetailComponent implements OnInit {
   @Input() selectHero: Hero;
+  editName: string;
   constructor() { }
   ngOnInit(): void {
+    // this.editName = this.selectHero.name || '';
+  }
+
+  change(): void {
+    console.log('正在修改英雄的名字');
   }
 
 }
